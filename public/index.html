@@ -228,6 +228,50 @@ h1.title{font-weight:600;font-size:30px;line-height:1.15;letter-spacing:-.03em;m
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--on-ink);padding:9px 16px;border-radius:10px;font-size:13.5px;box-shadow:var(--shadow);z-index:60}
 .scrim{display:none}
 
+/* estudos */
+.card.span{grid-column:1/-1}
+.sh{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px;align-items:start;padding-bottom:6px}
+.lvl{display:flex;align-items:center;gap:14px;min-width:0}
+.lvl-badge{width:52px;height:52px;flex:none;border-radius:16px;background:var(--ink);color:var(--on-ink);display:grid;place-items:center;font-size:22px;font-weight:500}
+.lvl-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:7px}
+.lvl-txt b{font-size:15px;font-weight:600}
+.lvl-txt span{font-size:12.5px;color:var(--fg2)}
+.game{margin-top:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:center;padding:20px 22px}
+.gstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.gs{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;text-align:left;min-width:0}
+button.gs:hover{border-color:var(--line2)}
+.gs-l{font-size:12.5px;color:var(--fg2)}
+.gs>b{font-size:24px;font-weight:500;display:flex;align-items:center;gap:6px;line-height:1.2}
+.gs em{font-style:normal;font-size:12px;color:var(--fg3)}
+.ringw{position:relative;width:64px;height:64px}
+.ringw b{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:500}
+.wbars{display:flex;align-items:flex-end;gap:4px;height:46px}
+.wbars i{flex:1;border-radius:3px;background:var(--line2)}
+.wbars i.on{background:var(--ink)}
+.sbj{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--fg2);margin-bottom:1px}
+.kind{font-size:11.5px;border:1px solid var(--line2);border-radius:999px;padding:0 7px;color:var(--fg2)}
+.xp{font-size:12px;color:var(--fg3);padding:8px 4px 0;flex:none;white-space:nowrap}
+.xp.got{color:var(--fg)}
+.sec-t{font-size:15px;font-weight:600;margin:40px 0 4px;display:flex;align-items:center;gap:8px}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px}
+.badge{border:1px dashed var(--line2);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;color:var(--fg3)}
+.badge .bi{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--hover);margin-bottom:6px}
+.badge b{font-size:13.5px;font-weight:500}
+.badge span:last-child{font-size:12px}
+.badge.on{border-style:solid;border-color:var(--line);color:var(--fg)}
+.badge.on .bi{background:var(--ink);color:var(--on-ink)}
+.badge.on span:last-child{color:var(--fg2)}
+.celeb{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 0 4px}
+.celeb h3{margin:8px 0 0;font-size:22px;font-weight:600;letter-spacing:-.02em}
+.celeb p{margin:0 0 12px;color:var(--fg2)}
+.burst{position:relative;width:110px;height:110px;display:grid;place-items:center}
+.cb-ic{width:72px;height:72px;border-radius:22px;background:var(--ink);color:var(--on-ink);display:grid;place-items:center;animation:pop .45s cubic-bezier(.2,1.4,.4,1) both}
+.burst i{position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:var(--fg);opacity:0;animation:ray .8s ease-out .15s both}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes ray{0%{opacity:1;transform:translate(-50%,-50%) rotate(var(--a)) translateY(-34px)}100%{opacity:0;transform:translate(-50%,-50%) rotate(var(--a)) translateY(-58px)}}
+@media (prefers-reduced-motion:reduce){.cb-ic{animation:none}.burst i{display:none}}
+.fab{display:none}
+
 /* login */
 body.locked .app,body.locked .tabbar{display:none!important}
 .auth{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));background:var(--bg)}
@@ -332,7 +376,15 @@ a.btn{text-decoration:none;color:var(--fg)}
   .props dd{min-height:0}
   .mfoot{flex-wrap:wrap}
   .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .game{grid-template-columns:1fr;padding:16px;gap:16px}
+  .gstats{gap:8px}
+  .gs{padding:10px 12px}
+  .gs>b{font-size:20px}
+  .sh{grid-template-columns:1fr;gap:14px}
+  .fab{display:grid;place-items:center;position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(78px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:18px;background:var(--ink);color:var(--on-ink);box-shadow:0 6px 18px rgba(0,0,0,.22);z-index:31}
+  body.locked .fab{display:none}
 }
+@media (max-width:420px){.gstats{grid-template-columns:1fr 1fr}.gstats .gs:last-child{grid-column:1/-1}}
 @media (max-width:380px){.tiles{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -356,6 +408,7 @@ a.btn{text-decoration:none;color:var(--fg)}
   </main>
 </div>
 <nav class="tabbar" id="tabbar" aria-label="Navegação principal"></nav>
+<button class="fab" id="fab" data-act="fab" aria-label="Adicionar"></button>
 <div id="modalRoot"></div>
 <div class="toast" id="toast" hidden></div>
 <input type="file" id="photoIn" accept="image/*" hidden>
@@ -376,6 +429,11 @@ const ICONS={
  camera:'<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.2"/>',
  pin:'<path d="M12 17v5M9 3h6l-1 6 4 4H6l4-4z"/>',
  logout:'<path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5M5 12h11"/>',
+ star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+ trophy:'<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>',
+ flame:'<path d="M12 22a7 7 0 0 0 7-7c0-3-2-5.5-4-7.5 0 2.5-1.5 4-3 4 0-3-1-6-4-8.5C8 7 5 9.5 5 15a7 7 0 0 0 7 7z"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ book:'<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>',
  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>',
  cal:'<rect x="3.5" y="4.5" width="17" height="16" rx="2"/><path d="M8 3v3M16 3v3M3.5 10h17"/>',
  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
@@ -433,6 +491,7 @@ function seed(){
       k('Preparar estudo da célula','igreja',3,{due:a(4)}),
       k('Comprar material de escritório','trabalho',1,{due:t,status:'done',done:true,doneOn:t})],
     completions:comp,
+    study:ST0(),
     ui:{view:'inicio',filter:'all',showDone:false,colorOpen:null,taskMode:'board',groupBy:'status'}};
 }
 function load(){try{const r=localStorage.getItem(KEY);if(r){S=JSON.parse(r);return}}catch(e){}S=seed()}
@@ -479,14 +538,14 @@ function freeSlots(day){
 const goalNum=g=>g.unit==='R$'?`R$ ${fmtN(g.current)} de ${fmtN(g.target)}`:`${fmtN(g.current)} de ${fmtN(g.target)} ${esc(g.unit)}`;
 
 /* ---------- shell ---------- */
-const VIEWS={inicio:vHome,tarefas:vTasks,metas:vGoals,centros:vCenters};
-const NAV=[['inicio','Início','home'],['tarefas','Tarefas','list'],['metas','Metas','target'],['centros','Centros','grid']];
+const VIEWS={inicio:vHome,tarefas:vTasks,estudos:vStudies,metas:vGoals,centros:vCenters};
+const NAV=[['inicio','Início','home'],['tarefas','Tarefas','list'],['estudos','Estudos','book'],['metas','Metas','target'],['centros','Centros','grid']];
 const pendCount=c=>S.tasks.filter(t=>t.center===c&&!isDone(t)&&(!isRec(t)||inToday(t))).length;
 function renderSide(){
   const u=S.user,v=S.ui.view,init=esc((u.name||'?').trim().charAt(0).toUpperCase());
   $('#side').innerHTML=`
     <button class="ws" data-act="settings"><span class="mini" style="${u.photo?`background-image:url(${u.photo})`:''}">${u.photo?'':init}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(u.name||'Você')}</span><span style="color:var(--fg3)">${I('dots',16)}</span></button>
-    ${NAV.map(([k,l,ic])=>`<button class="nav-i ${v===k?'on':''}" data-act="go" data-v="${k}" ${v===k?'aria-current="page"':''}>${I(ic)}${l}${k==='tarefas'?`<span class="cnt num">${pendingNow().filter(inToday).length}</span>`:''}</button>`).join('')}
+    ${NAV.map(([k,l,ic])=>`<button class="nav-i ${v===k?'on':''}" data-act="go" data-v="${k}" ${v===k?'aria-current="page"':''}>${I(ic)}${l}${k==='tarefas'?`<span class="cnt num">${pendingNow().filter(inToday).length}</span>`:''}${k==='estudos'?`<span class="cnt num">${S.study.items.filter(i=>!i.done&&i.date&&i.date<=T()).length||''}</span>`:''}</button>`).join('')}
     <button class="side-new" data-act="newTask">${I('plus')}Nova tarefa</button>
     <div class="side-h">Centros</div>
     ${S.centers.map(c=>`<button class="nav-i ${v==='tarefas'&&S.ui.filter===c.id?'on':''}" data-act="filterCenter" data-id="${c.id}">${dot(c.color)}${esc(c.name)}<span class="cnt num">${pendCount(c.id)}</span></button>`).join('')}
@@ -496,7 +555,8 @@ function renderSide(){
   document.querySelector('.top-out').innerHTML=I('logout',20);
   $('#topAvatar').innerHTML=`<span class="mini" style="${u.photo?`background-image:url(${u.photo})`:''}">${u.photo?'':init}</span>`;
   const tab=([k,l,ic])=>`<button class="tab ${v===k?'on':''}" data-act="go" data-v="${k}" ${v===k?'aria-current="page"':''}>${I(ic,22)}${l}</button>`;
-  $('#tabbar').innerHTML=tab(NAV[0])+tab(NAV[1])+`<button class="tab-add" data-act="newTask" aria-label="Nova tarefa">${I('plus',22)}</button>`+tab(NAV[2])+tab(NAV[3]);
+  $('#tabbar').innerHTML=NAV.map(tab).join('');
+  $('#fab').innerHTML=I('plus',24);$('#fab').setAttribute('aria-label',v==='estudos'?'Novo estudo':'Nova tarefa');
 }
 function render(){if(!VIEWS[S.ui.view])S.ui.view='inicio';renderSide();$('#main').innerHTML=VIEWS[S.ui.view]();save()}
 function go(v){S.ui.view=v;closeMenu();render();$('#mainWrap').scrollTop=0;try{history.replaceState(null,'','#'+v)}catch(e){}}
@@ -537,6 +597,7 @@ function vHome(){
       <div class="kpi"><span>Livre hoje</span><b class="num">${hm(free)}</b><em>entre 8h e 22h</em></div>
     </div>
     <div class="cards2">
+      ${studyHomeCard()}
       <section class="card"><div class="card-h">Prioridades<button class="more" data-act="go" data-v="tarefas">Ver todas${I('arrow',13)}</button></div>
         ${pendingNow().slice(0,5).map(taskRow).join('')||'<p class="empty">Tudo em dia.</p>'}</section>
       <section class="card"><div class="card-h">Agenda de hoje<a class="more pill" href="${gmailHref()}" target="_blank" rel="noopener">${I('mail',14)}Enviar ao Gmail</a></div>${agendaToday()}</section>
@@ -650,6 +711,161 @@ function vCenters(){
   <div class="callout">Em semana de provas, suba o peso de <b>Escola</b> para 5 e as tarefas da escola sobem na sua lista de prioridades.</div></div>`;
 }
 
+/* ---------- estudos ---------- */
+const SKIND={estudo:['Estudo',20],revisao:['Revisão',15],exercicios:['Exercícios',25],simulado:['Simulado',40]};
+const LEVELS=['Iniciante','Aprendiz','Estudante','Dedicado','Focado','Expert','Mestre','Sábio','Lenda'];
+const BADGES=[
+  ['primeiro','Primeiro passo','Conclua seu primeiro estudo','star',s=>s.done>=1],
+  ['constancia','Constância','Estude 3 dias seguidos','flame',s=>s.best>=3],
+  ['fogo','Semana de fogo','Estude 7 dias seguidos','flame',s=>s.best>=7],
+  ['revisor','Revisor','Conclua 5 revisões','repeat',s=>s.reviews>=5],
+  ['maratona','Maratona','Estude 2 horas num só dia','clock',s=>s.maxDay>=120],
+  ['pontual','Pontual','Conclua 10 estudos no prazo','check',s=>s.onTime>=10],
+  ['simulado','Prova de fogo','Faça um simulado','target',s=>s.simulados>=1],
+  ['veterano','Veterano','Conclua 25 sessões','trophy',s=>s.done>=25]];
+function ST0(){return {areas:[],items:[],xp:0,goal:60,badges:[]}}
+const areaOf=id=>S.study.areas.find(a=>a.id===id)||{id:null,name:'Sem área',color:'gray',subjects:[]};
+const lvlOf=xp=>{let L=1;while(xp>=50*L*(L+1))L++;return {L,base:50*L*(L-1),next:50*L*(L+1),title:LEVELS[Math.min(L-1,LEVELS.length-1)]}};
+const xpFor=it=>(SKIND[it.kind]||SKIND.estudo)[1]+Math.floor((it.dur||0)/10)*2+(!it.date||it.date>=T()?5:0);
+function studyStats(){
+  const done=S.study.items.filter(i=>i.done),days={};
+  done.forEach(i=>{days[i.doneOn]=(days[i.doneOn]||0)+(i.dur||0)});
+  let best=0,run=0,prev=null;
+  for(const d of Object.keys(days).sort()){run=prev&&diff(prev,d)===1?run+1:1;best=Math.max(best,run);prev=d}
+  let cur=0,d=T();if(!(d in days))d=addD(d,-1);while(d in days){cur++;d=addD(d,-1)}
+  return {done:done.length,reviews:done.filter(i=>i.kind==='revisao').length,simulados:done.filter(i=>i.kind==='simulado').length,onTime:done.filter(i=>i.onTime).length,maxDay:Math.max(0,...Object.values(days)),best,cur,days,today:days[T()]||0};
+}
+function toggleStudy(id){
+  const it=S.study.items.find(x=>x.id===id);if(!it)return;
+  if(it.done){
+    S.study.xp=Math.max(0,S.study.xp-(it.xp||0));Object.assign(it,{done:false,doneOn:null,xp:0,onTime:false});
+    S.study.items=S.study.items.filter(x=>!(x.parent===it.id&&x.auto&&!x.done));
+    render();toast('Estudo reaberto');return}
+  const before=lvlOf(S.study.xp).L;
+  it.xp=xpFor(it);it.onTime=!it.date||it.date>=T();it.done=true;it.doneOn=T();S.study.xp+=it.xp;
+  let msg=`+${it.xp} XP`;
+  if(it.reviews&&it.kind!=='revisao'&&!S.study.items.some(x=>x.parent===it.id)){
+    [1,7,30].forEach((d,i)=>S.study.items.push({id:uid(),area:it.area,subject:it.subject,topic:it.topic,date:addD(T(),d),time:null,dur:20,kind:'revisao',rev:i+1,parent:it.id,auto:true,reviews:false,done:false,doneOn:null,xp:0,onTime:false,notes:''}));
+    msg+=' · 3 revisões agendadas'}
+  const st=studyStats(),fresh=BADGES.filter(b=>b[4](st)&&!S.study.badges.includes(b[0]));
+  fresh.forEach(b=>S.study.badges.push(b[0]));
+  const after=lvlOf(S.study.xp);
+  render();
+  if(after.L>before)celebrate(`Nível ${after.L}`,`+${it.xp} XP. Você agora é ${after.title}.`,'trophy');
+  else if(fresh.length)celebrate('Conquista desbloqueada',`${fresh.map(b=>b[1]).join(', ')} · +${it.xp} XP`,fresh[0][3]);
+  else toast(msg);
+}
+function celebrate(t,txt,ic){
+  modal(`<div class="celeb"><div class="burst">${[...Array(10)].map((_,i)=>`<i style="--a:${i*36}deg"></i>`).join('')}<span class="cb-ic">${I(ic,30)}</span></div><h3>${esc(t)}</h3><p>${esc(txt)}</p><button class="btn primary" data-act="close" style="width:100%;justify-content:center">Continuar</button></div>`);
+}
+function srow(it){
+  const a=areaOf(it.area),k=SKIND[it.kind]||SKIND.estudo,d=it.date?diff(T(),it.date):null;
+  const when=!it.date?'sem data':(d<0&&!it.done?`<span class="late">atrasado · ${fmtD(it.date)}</span>`:d===0?'hoje':d===1?'amanhã':d===-1?'ontem':d>1&&d<7?WD[wd(it.date)]:fmtD(it.date));
+  return `<div class="row ${it.done?'done':''}">
+    <button class="chk ${it.done?'on':''}" data-act="toggleStudy" data-id="${it.id}" aria-label="${it.done?'Reabrir':'Concluir'} ${esc(it.topic)}"><span>${I('check',10)}</span></button>
+    <button class="row-main" data-act="editStudy" data-id="${it.id}">
+      <div class="sbj">${dot(a.color)}${esc(it.subject||'Sem matéria')}${it.kind!=='estudo'?`<span class="kind">${k[0]}${it.rev?' '+it.rev:''}</span>`:''}</div>
+      <div class="row-title">${esc(it.topic)}</div>
+      <div class="meta"><span>${when}${it.time?' · '+it.time:''}</span><span>${hm(it.dur||0)}</span>${S.ui.sarea==='all'||S.ui.view!=='estudos'?`<span>${esc(a.name)}</span>`:''}${it.notes?`<span>${esc(it.notes)}</span>`:''}</div>
+    </button>
+    <span class="xp num ${it.done?'got':''}">+${it.done?it.xp:xpFor(it)} XP</span></div>`;
+}
+function levelBlock(lv){
+  return `<div class="lvl"><div class="lvl-badge num">${lv.L}</div><div class="lvl-txt"><b>Nível ${lv.L} · ${lv.title}</b><div class="bar thick"><i style="width:${(S.study.xp-lv.base)/(lv.next-lv.base)*100}%"></i></div><span class="num">${S.study.xp} de ${lv.next} XP · faltam ${lv.next-S.study.xp} para o nível ${lv.L+1}</span></div></div>`;
+}
+function gameCard(st,lv){
+  const gp=Math.min(1,st.today/S.study.goal),R=26,C=+(2*Math.PI*R).toFixed(2);
+  const last7=[...Array(7)].map((_,i)=>{const d=addD(T(),i-6);return {d,m:st.days[d]||0}}),mx=Math.max(S.study.goal,...last7.map(x=>x.m));
+  return `<section class="card game">${levelBlock(lv)}
+    <div class="gstats">
+      <div class="gs"><span class="gs-l">Sequência</span><b class="num">${I('flame',18)}${st.cur}</b><em>${st.cur===1?'dia':'dias'} · recorde ${st.best}</em></div>
+      <button class="gs" data-act="studyGoal" title="Mudar a meta diária"><span class="gs-l">Meta de hoje</span><span class="ringw"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="${R}" fill="none" stroke="var(--line)" stroke-width="6"/>${gp>0?`<circle cx="32" cy="32" r="${R}" fill="none" stroke="var(--ink)" stroke-width="6" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${(C*(1-gp)).toFixed(2)}" transform="rotate(-90 32 32)"/>`:''}</svg><b class="num">${Math.round(gp*100)}%</b></span><em class="num">${st.today} de ${S.study.goal} min</em></button>
+      <div class="gs"><span class="gs-l">Últimos 7 dias</span><div class="wbars">${last7.map(x=>`<i class="${x.m?'on':''}" style="height:${Math.max(4,Math.round(x.m/mx*44))}px" title="${fmtD(x.d)}: ${x.m} min"></i>`).join('')}</div><em class="num">${last7.reduce((a,x)=>a+x.m,0)} min</em></div>
+    </div></section>`;
+}
+function studyHomeCard(){
+  const lv=lvlOf(S.study.xp),st=studyStats(),td=T();
+  const next=S.study.items.filter(i=>!i.done&&i.date&&i.date<=td).sort((a,b)=>a.date.localeCompare(b.date)||(a.time||'99').localeCompare(b.time||'99')).slice(0,3);
+  return `<section class="card span"><div class="card-h">Estudos<span style="font-weight:400;font-size:13px;color:var(--fg3);display:inline-flex;align-items:center;gap:4px">${I('flame',13)}${st.cur} · ${st.today}/${S.study.goal} min hoje</span><button class="more" data-act="go" data-v="estudos">Cronograma${I('arrow',13)}</button></div>
+    <div class="sh">${levelBlock(lv)}<div>${next.map(srow).join('')||`<p class="empty">${S.study.areas.length?'Nada para estudar hoje.':'Crie sua primeira área de estudo na aba Estudos.'}</p>`}</div></div></section>`;
+}
+function vStudies(){
+  const st=studyStats(),lv=lvlOf(S.study.xp),td=T(),areas=S.study.areas;
+  if(S.ui.sarea!=='all'&&!areas.some(a=>a.id===S.ui.sarea))S.ui.sarea='all';
+  const fa=S.ui.sarea;
+  const head=`<div class="head-row"><div><h1 class="title">Estudos</h1><p class="sub">Monte o cronograma, conclua as sessões e ganhe XP.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="newArea">${I('plus',14)}Nova área</button><button class="btn primary" data-act="newStudy">${I('plus',14)}Novo estudo</button></div></div>`;
+  const badges=`<div class="sec-t">${I('trophy',16)}Conquistas<span style="font-weight:400;color:var(--fg3);font-size:13px">${S.study.badges.length} de ${BADGES.length}</span></div>
+    <div class="badges">${BADGES.map(b=>{const on=S.study.badges.includes(b[0]);return `<div class="badge ${on?'on':''}"><span class="bi">${I(b[3],20)}</span><b>${b[1]}</b><span>${b[2]}</span></div>`}).join('')}</div>`;
+  const how=`<div class="callout"><b>Como ganhar XP:</b> estudo 20, revisão 15, exercícios 25 e simulado 40, mais 2 XP a cada 10 minutos e +5 quando você conclui até a data marcada. Ao concluir um estudo, o app agenda revisões em 1, 7 e 30 dias.</div>`;
+  if(!areas.length)return `<div class="page">${head}${gameCard(st,lv)}
+    <div class="card" style="margin-top:16px;padding:26px 24px"><h3 style="margin:0 0 6px;font-size:17px;font-weight:600">Crie sua primeira área de estudo</h3><p class="sub" style="margin-bottom:18px">Uma área agrupa suas matérias, como ENEM, Faculdade ou Inglês. Depois é só adicionar o que estudar e quando.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" data-act="newArea">Criar área</button><button class="btn" data-act="studyExample">Ver um exemplo</button></div></div>${badges}${how}</div>`;
+  const its=S.study.items.filter(i=>fa==='all'||i.area===fa);
+  const byDate=(a,b)=>(a.date||'9999').localeCompare(b.date||'9999')||(a.time||'99').localeCompare(b.time||'99');
+  const G=[['Atrasados',i=>!i.done&&i.date&&i.date<td],['Hoje',i=>!i.done&&i.date===td],['Amanhã',i=>!i.done&&i.date===addD(td,1)],['Próximos 7 dias',i=>!i.done&&i.date&&diff(td,i.date)>=2&&diff(td,i.date)<=7],['Mais tarde',i=>!i.done],['Concluídos nos últimos 7 dias',i=>i.done&&diff(i.doneOn,td)<=7]];
+  const used=new Set();
+  const groups=G.map(([n,fn])=>{const l=its.filter(i=>!used.has(i.id)&&fn(i));l.forEach(i=>used.add(i.id));return [n,n.startsWith('Concluídos')?l.sort((a,b)=>b.doneOn.localeCompare(a.doneOn)):l.sort(byDate)]}).filter(g=>g[1].length);
+  return `<div class="page">${head}${gameCard(st,lv)}
+    <div class="bar-row" style="margin-top:28px"><div class="chips"><button class="chip ${fa==='all'?'on':''}" data-act="sarea" data-id="all">Todas</button>${areas.map(a=>`<button class="chip ${fa===a.id?'on':''}" data-act="sarea" data-id="${a.id}">${dot(a.color)}${esc(a.name)}</button>`).join('')}</div></div>
+    ${groups.length?groups.map(([n,l])=>`<div class="grp"><div class="grp-h">${n}<span class="num">${l.length}</span></div>${l.map(srow).join('')}</div>`).join(''):'<div class="callout">Nada no cronograma desta área. Adicione um estudo com data e matéria.</div>'}
+    <div class="sec-t">${I('book',16)}Áreas de estudo</div>
+    <div class="tiles" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-top:12px">${areas.map(a=>{const ai=S.study.items.filter(i=>i.area===a.id),dn=ai.filter(i=>i.done).length,wk=ai.filter(i=>i.done&&diff(i.doneOn,td)<7).reduce((s,i)=>s+(i.dur||0),0),p=ai.length?dn/ai.length*100:0;
+      return `<button class="tile" data-act="editArea" data-id="${a.id}"><span class="tn">${dot(a.color)}${esc(a.name)}</span><b class="num">${Math.round(p)}%</b><div class="bar thick"><i style="width:${p}%"></i></div><span class="nx">${dn} de ${ai.length} sessões · ${wk} min na semana</span><span class="nx">${a.subjects.length?esc(a.subjects.join(', ')):'Sem matérias'}</span></button>`}).join('')}</div>
+    ${badges}${how}</div>`;
+}
+function studyExample(){
+  const t=T(),a=n=>addD(t,n);
+  const A1={id:uid(),name:'Prova de Cálculo',color:'purple',subjects:['Limites','Derivadas','Integrais']};
+  const A2={id:uid(),name:'Inglês',color:'green',subjects:['Gramática','Listening','Vocabulário']};
+  const mk=(ar,subject,topic,date,dur,kind='estudo',o={})=>({id:uid(),area:ar.id,subject,topic,date,time:null,dur,kind,reviews:kind==='estudo',rev:0,parent:null,auto:false,done:false,doneOn:null,xp:0,onTime:false,notes:'',...o});
+  const d1=mk(A1,'Limites','Limites laterais',a(-1),50,'estudo',{done:true,doneOn:a(-1),onTime:true,xp:35});
+  const d2=mk(A2,'Gramática','Present perfect',a(-2),30,'estudo',{done:true,doneOn:a(-2),onTime:true,xp:31,reviews:false});
+  const items=[d1,d2,
+    ...[[0,1],[6,2],[29,3]].map(([n,r])=>mk(A1,'Limites','Limites laterais',a(n),20,'revisao',{rev:r,parent:d1.id,auto:true,reviews:false})),
+    mk(A1,'Derivadas','Regra da cadeia',t,50),
+    mk(A1,'Derivadas','Lista 2 de exercícios',a(1),45,'exercicios'),
+    mk(A1,'Integrais','Integral indefinida',a(3),50),
+    mk(A1,'Geral','Simulado da prova',a(6),90,'simulado'),
+    mk(A2,'Listening','Podcast, episódio 12',a(2),25)];
+  S.study.areas.push(A1,A2);S.study.items.push(...items);S.study.xp+=d1.xp+d2.xp;
+  const st=studyStats();BADGES.forEach(b=>{if(b[4](st)&&!S.study.badges.includes(b[0]))S.study.badges.push(b[0])});
+  render();toast('Exemplo criado. Edite ou exclua quando quiser.');
+}
+function openStudy(id,preset={}){
+  if(!S.study.areas.length){openArea(null);toast('Crie uma área de estudo primeiro');return}
+  const fa=S.ui.sarea!=='all'?S.ui.sarea:S.study.areas[0].id;
+  const it=id?S.study.items.find(x=>x.id===id):{area:fa,subject:'',topic:'',date:T(),time:null,dur:50,kind:'estudo',reviews:true,notes:'',...preset};
+  const subs=[...new Set(S.study.areas.flatMap(a=>a.subjects))];
+  modal(`<form id="studyForm" data-id="${id||''}" novalidate><h2>${id?'Editar estudo':'Novo estudo'}</h2>
+    <input class="title-inp" id="st-topic" value="${esc(it.topic)}" placeholder="Assunto, ex.: Regra da cadeia" aria-label="Assunto"><p class="err" id="st-err"></p>
+    <dl class="props">
+      <dt>Área</dt><dd><select class="inp" id="st-area">${S.study.areas.map(a=>`<option value="${a.id}" ${a.id===it.area?'selected':''}>${esc(a.name)}</option>`).join('')}</select></dd>
+      <dt>Matéria</dt><dd><input class="inp" id="st-subject" list="st-subs" value="${esc(it.subject)}" placeholder="Derivadas"><datalist id="st-subs">${subs.map(s=>`<option value="${esc(s)}"></option>`).join('')}</datalist></dd>
+      <dt>Tipo</dt><dd><select class="inp" id="st-kind">${Object.entries(SKIND).map(([k,[l,x]])=>`<option value="${k}" ${it.kind===k?'selected':''}>${l} · ${x} XP</option>`).join('')}</select></dd>
+      <dt>Data</dt><dd><input class="inp" type="date" id="st-date" value="${it.date||''}"></dd>
+      <dt>Horário</dt><dd><input class="inp" type="time" id="st-time" value="${it.time||''}"></dd>
+      <dt>Duração</dt><dd><select class="inp" id="st-dur">${[15,20,25,30,45,50,60,90,120,180].map(m=>`<option value="${m}" ${it.dur===m?'selected':''}>${hm(m)}</option>`).join('')}</select></dd>
+      ${id?'':`<dt>Revisões</dt><dd><button type="button" class="switch ${it.reviews?'on':''}" id="st-rev" data-act="switch" role="switch" aria-checked="${!!it.reviews}" aria-label="Criar revisões automáticas"></button><span style="font-size:12.5px;color:var(--fg3)">Ao concluir, agenda revisões em 1, 7 e 30 dias</span></dd>`}
+      <dt>Anotações</dt><dd><input class="inp" id="st-notes" value="${esc(it.notes||'')}" placeholder="Capítulo 3, exercícios 1 a 10"></dd>
+    </dl>
+    <div class="mfoot">${id?`<button type="button" class="btn danger" data-act="del" data-kind="study" data-id="${id}">Excluir</button>`:''}<span class="sp"></span><button type="button" class="btn" data-act="close">Cancelar</button><button class="btn primary" type="submit">Salvar</button></div></form>`);
+}
+function openArea(id){
+  const a=id?S.study.areas.find(x=>x.id===id):{name:'',color:Object.keys(COLORS).find(k=>k!=='gray'&&!S.study.areas.some(x=>x.color===k))||'blue',subjects:[]};
+  modal(`<form id="areaForm" data-id="${id||''}" novalidate><h2>${id?'Editar área de estudo':'Nova área de estudo'}</h2>
+    <input class="title-inp" id="ar-name" value="${esc(a.name)}" placeholder="ENEM, Faculdade, Inglês" aria-label="Nome da área"><p class="err" id="ar-err"></p>
+    <dl class="props">
+      <dt>Cor</dt><dd><div class="palette" style="padding:0" id="ar-color" data-c="${a.color}">${Object.entries(COLORS).map(([k,[l]])=>`<button type="button" class="${a.color===k?'on':''}" data-act="pickColor" data-c="${k}" aria-label="${l}" title="${l}">${dot(k)}</button>`).join('')}</div></dd>
+      <dt>Matérias</dt><dd><input class="inp" id="ar-subs" value="${esc(a.subjects.join(', '))}" placeholder="Matemática, Física, Redação"></dd>
+    </dl>
+    <p class="hint">Separe as matérias por vírgula. Uma matéria nova digitada num estudo também entra aqui.</p>
+    <div class="mfoot">${id?`<button type="button" class="btn danger" data-act="del" data-kind="area" data-id="${id}">Excluir área</button>`:''}<span class="sp"></span><button type="button" class="btn" data-act="close">Cancelar</button><button class="btn primary" type="submit">Salvar</button></div></form>`);
+}
+function openStudyGoal(){
+  modal(`<form id="sgoalForm" novalidate><h2>Meta diária de estudo</h2>
+    <dl class="props"><dt>Minutos por dia</dt><dd><select class="inp" id="sg-min">${[15,30,45,60,90,120,180,240].map(m=>`<option value="${m}" ${S.study.goal===m?'selected':''}>${hm(m)}</option>`).join('')}</select></dd></dl>
+    <div class="mfoot"><span class="sp"></span><button type="button" class="btn" data-act="close">Cancelar</button><button class="btn primary" type="submit">Salvar</button></div></form>`);
+}
+
 /* ---------- modals ---------- */
 function modal(html){$('#modalRoot').innerHTML=`<div class="backdrop" id="backdrop"><div class="modal" role="dialog" aria-modal="true">${html}</div></div>`;const f=$('#modalRoot input:not([type=checkbox])');if(f)setTimeout(()=>f.focus(),10)}
 function closeModal(){$('#modalRoot').innerHTML=''}
@@ -735,6 +951,16 @@ document.addEventListener('click',e=>{
     case 'toggle':toggleTask(id);break;
     case 'edit':openTask(id);break;
     case 'newTask':{closeMenu();const pr={};if(el.dataset.status)pr.status=el.dataset.status;if(el.dataset.center)pr.center=el.dataset.center;openTask(null,pr);break}
+    case 'fab':if(S.ui.view==='estudos')openStudy(null);else openTask(null);break;
+    case 'toggleStudy':toggleStudy(id);break;
+    case 'editStudy':openStudy(id);break;
+    case 'newStudy':openStudy(null);break;
+    case 'newArea':openArea(null);break;
+    case 'editArea':openArea(id);break;
+    case 'sarea':S.ui.sarea=id;render();break;
+    case 'studyGoal':openStudyGoal();break;
+    case 'studyExample':studyExample();break;
+    case 'pickColor':{const p=el.parentElement;p.dataset.c=el.dataset.c;p.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===el));break}
     case 'signIn':el.disabled=true;el.textContent='Abrindo o Google…';$('#authErr').textContent='';if(window.signIn)window.signIn();break;
     case 'signOut':closeModal();if(window.signOutApp)window.signOutApp();break;
     case 'nextStatus':{const t=S.tasks.find(x=>x.id===id);if(!t)break;const st=stOf(t),ns=st==='done'?'todo':(st==='doing'||isRec(t))?'done':'doing';setStatus(t,ns);render();toast(ns==='done'?'Concluída':ns==='doing'?'Movida para Fazendo':'Reaberta');break}
@@ -760,6 +986,8 @@ document.addEventListener('click',e=>{
       if(k==='task'){S.tasks=S.tasks.filter(t=>t.id!==id);closeModal();toast('Tarefa excluída')}
       if(k==='goal'){S.goals=S.goals.filter(g=>g.id!==id);S.tasks.forEach(t=>{if(t.goal===id)t.goal=null});closeModal()}
       if(k==='center'){S.centers=S.centers.filter(c=>c.id!==id);if(S.ui.filter===id)S.ui.filter='all';toast('Centro excluído. As tarefas ficaram sem centro.')}
+      if(k==='study'){const it=S.study.items.find(x=>x.id===id);if(it&&it.done)S.study.xp=Math.max(0,S.study.xp-(it.xp||0));S.study.items=S.study.items.filter(x=>x.id!==id&&!(x.parent===id&&x.auto&&!x.done));closeModal();toast('Estudo excluído')}
+      if(k==='area'){S.study.items.filter(x=>x.area===id&&x.done).forEach(x=>{S.study.xp=Math.max(0,S.study.xp-(x.xp||0))});S.study.items=S.study.items.filter(x=>x.area!==id);S.study.areas=S.study.areas.filter(a=>a.id!==id);S.ui.sarea='all';closeModal();toast('Área excluída')}
       if(k==='reset'){S=seed();closeModal();toast('Dados de exemplo restaurados')}
       render();break}
   }
@@ -792,6 +1020,23 @@ document.addEventListener('submit',e=>{
     const data={title,center:$('#g-center').value,current:parseFloat($('#g-cur').value)||0,target:tgt,unit:$('#g-unit').value.trim(),due:$('#g-due').value||null};
     const id=f.dataset.id;if(id)Object.assign(S.goals.find(g=>g.id===id),data);else S.goals.push({id:uid(),...data});
     closeModal();render();return}
+  if(f.id==='studyForm'){
+    const topic=$('#st-topic').value.trim(),subject=$('#st-subject').value.trim(),area=$('#st-area').value;
+    if(!topic){$('#st-err').textContent='Escreva o assunto que você vai estudar.';$('#st-topic').focus();return}
+    const ar=S.study.areas.find(a=>a.id===area);
+    if(ar&&subject&&!ar.subjects.some(s=>norm(s)===norm(subject)))ar.subjects.push(subject);
+    const data={area,subject,topic,kind:$('#st-kind').value,date:$('#st-date').value||null,time:$('#st-time').value||null,dur:+$('#st-dur').value,notes:$('#st-notes').value.trim()};
+    const id=f.dataset.id;
+    if(id)Object.assign(S.study.items.find(x=>x.id===id),data);
+    else S.study.items.push({id:uid(),...data,reviews:$('#st-rev').classList.contains('on'),rev:0,parent:null,auto:false,done:false,doneOn:null,xp:0,onTime:false});
+    closeModal();render();toast(id?'Estudo salvo':'Adicionado ao cronograma');return}
+  if(f.id==='areaForm'){
+    const name=$('#ar-name').value.trim();if(!name){$('#ar-err').textContent='Dê um nome para a área.';$('#ar-name').focus();return}
+    const data={name,color:$('#ar-color').dataset.c,subjects:$('#ar-subs').value.split(',').map(s=>s.trim()).filter(Boolean)};
+    const id=f.dataset.id;
+    if(id)Object.assign(S.study.areas.find(a=>a.id===id),data);else{const a={id:uid(),...data};S.study.areas.push(a);S.ui.sarea=a.id}
+    closeModal();render();toast(id?'Área salva':'Área criada');return}
+  if(f.id==='sgoalForm'){S.study.goal=+$('#sg-min').value;closeModal();render();return}
   if(f.id==='setForm'){
     S.user.name=$('#s-name').value.trim()||S.user.name;S.user.verse=$('#s-verse').classList.contains('on');S.gcal=$('#s-gcal').classList.contains('on');
     closeModal();render();toast('Configurações salvas');return}
@@ -822,6 +1067,8 @@ function bootApp(u){
   load();
   S.ui=Object.assign({view:'inicio',filter:'all',showDone:false,colorOpen:null,taskMode:'board',groupBy:'status'},S.ui||{});
   S.tasks.forEach(t=>{if(!t.status)t.status=t.done?'done':'todo'});
+  if(!S.study)S.study=ST0();
+  if(!S.ui.sarea)S.ui.sarea='all';
   if(!S.user.fromGoogle){if(ME.name)S.user.name=ME.name.split(' ')[0];if(!S.user.photo&&ME.photo)S.user.photo=ME.photo;S.user.fromGoogle=true}
   {const h=location.hash.slice(1);if(VIEWS[h])S.ui.view=h}
   document.body.classList.remove('locked');$('#auth').hidden=true;
