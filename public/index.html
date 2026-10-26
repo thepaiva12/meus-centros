@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="/icon.svg">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
-<body>
+<body class="locked">
 <title>Meus Centros</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -228,6 +228,19 @@ h1.title{font-weight:600;font-size:30px;line-height:1.15;letter-spacing:-.03em;m
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--on-ink);padding:9px 16px;border-radius:10px;font-size:13.5px;box-shadow:var(--shadow);z-index:60}
 .scrim{display:none}
 
+/* login */
+body.locked .app,body.locked .tabbar{display:none!important}
+.auth{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));background:var(--bg)}
+.auth-box{width:100%;max-width:360px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.auth-box img{width:52px;height:52px;border-radius:14px}
+.auth-box h1{margin:10px 0 0;font-size:30px;font-weight:600;letter-spacing:-.03em;line-height:1.15}
+.auth-box p{margin:0;color:var(--fg2);font-size:15px}
+.gbtn{margin-top:16px;width:100%;height:48px;border:1px solid var(--line2);border-radius:12px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:500;background:var(--bg)}
+.gbtn:hover{background:var(--hover)}
+.gbtn:disabled{opacity:.55;cursor:default}
+.auth-err{color:var(--danger);font-size:13.5px;min-height:20px;margin:0}
+.auth-foot{font-size:12.5px;color:var(--fg3);margin-top:8px}
+
 /* home cards */
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px}
 .kpi{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:16px 18px 15px;display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -322,6 +335,16 @@ a.btn{text-decoration:none;color:var(--fg)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
+<div class="auth" id="auth">
+  <div class="auth-box">
+    <img src="/icon.svg" alt="">
+    <h1>Meus Centros</h1>
+    <p>Suas tarefas, metas e centros em um só lugar.</p>
+    <button class="gbtn" id="authBtn" data-act="signIn" disabled>Carregando…</button>
+    <p class="auth-err" id="authErr" role="alert"></p>
+    <p class="auth-foot">Entre com a sua conta Google para continuar.</p>
+  </div>
+</div>
 <div class="app">
   <aside class="side" id="side" aria-label="Navegação"></aside>
   <div class="scrim" id="scrim"></div>
@@ -336,7 +359,7 @@ a.btn{text-decoration:none;color:var(--fg)}
 <input type="file" id="photoIn" accept="image/*" hidden>
 
 <script>
-const KEY='meus-centros-v1';
+let KEY='meus-centros-v1';
 const ICONS={
  home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
  list:'<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>',
@@ -662,6 +685,7 @@ function openSettings(){
   const u=S.user;
   modal(`<form id="setForm" novalidate><h2>Configurações</h2>
     <dl class="props" style="grid-template-columns:150px minmax(0,1fr)">
+      <dt>Conta Google</dt><dd><span style="font-size:13.5px;color:var(--fg2);overflow-wrap:anywhere">${esc(ME?ME.email:'')}</span><button type="button" class="btn" data-act="signOut">Sair</button></dd>
       <dt>Seu nome</dt><dd><input class="inp" id="s-name" value="${esc(u.name)}"></dd>
       <dt>Foto</dt><dd><button type="button" class="btn" data-act="photo">${I('camera',14)}Trocar foto</button>${u.photo?'<button type="button" class="btn" data-act="rmPhoto">Remover</button>':''}</dd>
       <dt>Versículo do dia</dt><dd><button type="button" class="switch ${u.verse?'on':''}" id="s-verse" data-act="switch" role="switch" aria-checked="${!!u.verse}" aria-label="Mostrar versículo"></button></dd>
@@ -706,6 +730,8 @@ document.addEventListener('click',e=>{
     case 'toggle':toggleTask(id);break;
     case 'edit':openTask(id);break;
     case 'newTask':{closeMenu();const pr={};if(el.dataset.status)pr.status=el.dataset.status;if(el.dataset.center)pr.center=el.dataset.center;openTask(null,pr);break}
+    case 'signIn':el.disabled=true;el.textContent='Abrindo o Google…';$('#authErr').textContent='';if(window.signIn)window.signIn();break;
+    case 'signOut':closeModal();if(window.signOutApp)window.signOutApp();break;
     case 'nextStatus':{const t=S.tasks.find(x=>x.id===id);if(!t)break;const st=stOf(t),ns=st==='done'?'todo':(st==='doing'||isRec(t))?'done':'doing';setStatus(t,ns);render();toast(ns==='done'?'Concluída':ns==='doing'?'Movida para Fazendo':'Reaberta');break}
     case 'taskMode':S.ui.taskMode=el.dataset.v;render();break;
     case 'groupBy':S.ui.groupBy=el.dataset.v;render();break;
@@ -781,11 +807,52 @@ $('#photoIn').addEventListener('change',e=>{
   r.readAsDataURL(file);e.target.value='';
 });
 
-load();
-S.ui=Object.assign({view:'inicio',filter:'all',showDone:false,colorOpen:null,taskMode:'board',groupBy:'status'},S.ui||{});
-S.tasks.forEach(t=>{if(!t.status)t.status=t.done?'done':'todo'});
-{const h=location.hash.slice(1);if(VIEWS[h])S.ui.view=h}
-render();
+/* ---------- login ---------- */
+let ME=null;
+const GLOGO='<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
+function bootApp(u){
+  ME={uid:u.uid,name:u.displayName||'',email:u.email||'',photo:u.photoURL||null};
+  KEY='meus-centros-v1:'+u.uid;
+  try{if(!localStorage.getItem(KEY)){const old=localStorage.getItem('meus-centros-v1');if(old)localStorage.setItem(KEY,old)}}catch(e){}
+  load();
+  S.ui=Object.assign({view:'inicio',filter:'all',showDone:false,colorOpen:null,taskMode:'board',groupBy:'status'},S.ui||{});
+  S.tasks.forEach(t=>{if(!t.status)t.status=t.done?'done':'todo'});
+  if(!S.user.fromGoogle){if(ME.name)S.user.name=ME.name.split(' ')[0];if(!S.user.photo&&ME.photo)S.user.photo=ME.photo;S.user.fromGoogle=true}
+  {const h=location.hash.slice(1);if(VIEWS[h])S.ui.view=h}
+  document.body.classList.remove('locked');$('#auth').hidden=true;
+  render();
+}
+function showLogin(){
+  ME=null;closeModal();document.body.classList.add('locked');$('#auth').hidden=false;
+  const b=$('#authBtn');b.disabled=false;b.innerHTML=GLOGO+'Entrar com Google';
+}
+function authError(e){
+  const msg={'auth/popup-closed-by-user':'Login cancelado.','auth/cancelled-popup-request':'','auth/network-request-failed':'Sem conexão. Tente de novo.','auth/operation-not-allowed':'O login com Google ainda não foi ativado no Firebase.','auth/unauthorized-domain':'Este endereço não está autorizado no Firebase.'}[e&&e.code];
+  $('#authErr').textContent=msg===undefined?'Não foi possível entrar. Tente de novo.':msg;
+  const b=$('#authBtn');b.disabled=false;b.innerHTML=GLOGO+'Entrar com Google';
+}
+</script>
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import {getAuth,onAuthStateChanged,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,signOut} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+const host=location.hostname;
+const app=initializeApp({
+  apiKey:'AIzaSyDQ85OWIdEpmSPqM5Bcw95F3uDSg3xNVnQ',
+  authDomain:host.endsWith('.web.app')||host.endsWith('.firebaseapp.com')?host:'meus-centros-app.firebaseapp.com',
+  projectId:'meus-centros-app',
+  storageBucket:'meus-centros-app.firebasestorage.app',
+  messagingSenderId:'136297952953',
+  appId:'1:136297952953:web:2920f378890bd1b4944d68'
+});
+const auth=getAuth(app);auth.languageCode='pt-BR';
+const provider=new GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});
+getRedirectResult(auth).catch(authError);
+onAuthStateChanged(auth,u=>u?bootApp(u):showLogin());
+window.signIn=async()=>{
+  try{await signInWithPopup(auth,provider)}
+  catch(e){if(e.code==='auth/popup-blocked'||e.code==='auth/operation-not-supported-in-this-environment'){try{await signInWithRedirect(auth,provider)}catch(e2){authError(e2)}}else authError(e)}
+};
+window.signOutApp=()=>signOut(auth);
 </script>
 
 </body>
